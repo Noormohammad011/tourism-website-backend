@@ -35,48 +35,48 @@ async function run() {
       res.json(users)
     })
 
-    app.get('/users/:id', async (req, res) => {
-      const id = req.params.id
-      const query = { _id: ObjectId(id) }
-      const user = await usersCollection.findOne(query)
-      res.json(user)
-    })
+    // app.get('/users/:id', async (req, res) => {
+    //   const id = req.params.id
+    //   const query = { _id: ObjectId(id) }
+    //   const user = await usersCollection.findOne(query)
+    //   res.json(user)
+    // })
 
-    // POST API
-    app.post('/users', async (req, res) => {
-      const newUser = req.body
-      const result = await usersCollection.insertOne(newUser)
-      res.json(result)
-    })
+    // // POST API
+    // app.post('/users', async (req, res) => {
+    //   const newUser = req.body
+    //   const result = await usersCollection.insertOne(newUser)
+    //   res.json(result)
+    // })
 
-    //UPDATE API
-    app.put('/users/:id', async (req, res) => {
-      const id = req.params.id
-      const updatedUser = req.body
-      const filter = { _id: ObjectId(id) }
-      const options = { upsert: true }
-      const updateDoc = {
-        $set: {
-          name: updatedUser.name,
-          email: updatedUser.email,
-          password: updatedUser.password,
-          isAdmin: updatedUser.isAdmin,
-        },
-      }
-      const result = await usersCollection.updateOne(filter, updateDoc, options)
-      res.json(result)
-    })
+    // //UPDATE API
+    // app.put('/users/:id', async (req, res) => {
+    //   const id = req.params.id
+    //   const updatedUser = req.body
+    //   const filter = { _id: ObjectId(id) }
+    //   const options = { upsert: true }
+    //   const updateDoc = {
+    //     $set: {
+    //       name: updatedUser.name,
+    //       email: updatedUser.email,
+    //       password: updatedUser.password,
+    //       isAdmin: updatedUser.isAdmin,
+    //     },
+    //   }
+    //   const result = await usersCollection.updateOne(filter, updateDoc, options)
+    //   res.json(result)
+    // })
 
-    // DELETE API
-    app.delete('/users/:id', async (req, res) => {
-      const id = req.params.id
-      const query = { _id: ObjectId(id) }
-      const result = await usersCollection.deleteOne(query)
+    // // DELETE API
+    // app.delete('/users/:id', async (req, res) => {
+    //   const id = req.params.id
+    //   const query = { _id: ObjectId(id) }
+    //   const result = await usersCollection.deleteOne(query)
 
-      console.log('deleting user with id ', result)
+    //   console.log('deleting user with id ', result)
 
-      res.json(result)
-    })
+    //   res.json(result)
+    // })
   } finally {
     // await client.close();
   }
